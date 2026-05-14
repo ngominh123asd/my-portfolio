@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mousemove', drag);
 
     function dragStart(e) {
-        if (e.target.closest('a') || e.target.closest('button') || e.target.classList.contains('expand-btn')) return;
+        if (e.target.closest('a') || e.target.closest('button') || e.target.classList.contains('expand-btn') || e.target.classList.contains('project-image')) return;
 
         activeElement = this;
         this.classList.add('is-dragging');
