@@ -628,3 +628,67 @@ li {
     color: var(--bg-color);
     transform: scale(1.2);
 }
+
+/* ========================================= */
+/* MOBILE OPTIMIZATIONS (Smart Fallback)     */
+/* ========================================= */
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto !important; /* Enable vertical scrolling */
+        overflow-x: hidden !important;
+        height: auto !important;
+        min-height: 100vh;
+    }
+    
+    #custom-cursor {
+        display: none !important; /* Touch devices don't need custom cursor */
+    }
+
+    * {
+        cursor: auto !important; /* Restore normal touch interactions */
+    }
+
+    #chaos-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem;
+        padding-bottom: 6rem; /* Make room for the warning banner */
+        gap: 2rem;
+        height: auto;
+        width: 100%;
+    }
+
+    .draggable {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        transform: rotate(var(--drag-rot, 2deg)) !important; /* Keep the chaotic rotation but disable translation/parallax */
+    }
+
+    .draggable.expanded-container {
+        transform: rotate(0deg) !important; /* Straighten when reading */
+    }
+
+    .glitch {
+        font-size: 3.5rem; /* Scale down massive text */
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .warning-banner {
+        font-size: 1rem;
+        padding: 10px 0;
+    }
+
+    .lightbox img {
+        box-shadow: 5px 5px 0px var(--text-primary); /* Smaller shadow on mobile */
+    }
+}
