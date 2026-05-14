@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE ANTI-PORTFOLIO 💥</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="noise-layer"></div>
+    <div id="custom-cursor"></div>
+
+    <main id="chaos-container">
+        <!-- Floating scattered elements instead of structured layout -->
+
+        <header class="draggable header-block" data-depth="0.2" style="top: 5%; left: 5%;">
+            <h1 class="glitch" data-text="MINH.">MINH.</h1>
+            <p class="subtitle">Full-Stack AI Engineer. I build agents and break things.</p>
+            <button class="expand-btn brutal-btn" data-target="header-details">[+]</button>
+            <div class="expand-content" id="header-details">
+                <p>I'm a creative engineer who loves tearing down and rebuilding systems. I learn fast and get bored easily if there's nothing new to break. Instead of playing it safe, I prefer writing code that makes people say "What the hell is this, but hey, it works!".</p>
+                <p>Motto: If it's not on fire, you're not trying hard enough.</p>
+            </div>
+        </header>
+
+        <div class="draggable project-card" data-depth="0.5" style="top: 30%; left: 20%;">
+            <h2 class="section-title">01_NEXTSTEM_VN</h2>
+            <div class="tech-stack">PYTHON // REACT // LANGCHAIN</div>
+            <p>AI-powered platform assisting students with STEM study abroad orientation.</p>
+            <button class="expand-btn brutal-btn" data-target="proj1-details">[+]</button>
+            <div class="expand-content" id="proj1-details">
+                <div class="project-image-wrapper">
+                    <img src="images/nextSTEM.png" alt="NextSTEM Project" class="project-image">
+                </div>
+                <p>I built a RAG pipeline from scratch to enable the AI Study Coach to provide accurate consultations. The "Digital Twin" feature is the highlight, recording all interactions and tracking the development progress of each student.</p>
+                <p><strong>Tech:</strong> FastAPI, LangChain, Gemini, React 19, PostgreSQL</p>
+                <a href="https://nextstemvietnam.vercel.app" target="_blank" class="brutal-link">[LIVE_DEMO]</a>
+            </div>
+        </div>
+
+        <div class="draggable project-card" data-depth="-0.2" style="top: 60%; left: 35%;">
+            <h2 class="section-title">02_MASUZU_AI</h2>
+            <div class="tech-stack">FASTAPI // WEBSOCKET // MCP</div>
+            <p>AI Agent platform operating as a complete internal IDE.</p>
+            <button class="expand-btn brutal-btn" data-target="proj2-details">[+]</button>
+            <div class="expand-content" id="proj2-details">
+                <div class="project-image-wrapper">
+                    <img src="images/Masuzu.png" alt="Masuzu AI Project" class="project-image">
+                </div>
+                <p>A crazy project where I tried to shove an IDE into an AI's brain. Utilizes WebSockets for real-time streaming and the Model Context Protocol (MCP) to let the agent communicate directly with the codebase.</p>
+                 <p><strong>Tech:</strong> FastAPI, AsyncPG, React 18, Zustand, Docker, MCP</p>
+                <a href="https://github.com/ngominh123asd/Masuzu" target="_blank" class="brutal-link">[VIEW_SOURCE]</a>
+            </div>
+        </div>
+
+        <div class="draggable project-card" data-depth="0.3" style="top: 10%; left: 45%;">
+            <h2 class="section-title">03_EDUSERVICE</h2>
+            <div class="tech-stack">PHP // MYSQL // GCP</div>
+            <p>Multi-role educational management system.</p>
+            <button class="expand-btn brutal-btn" data-target="proj3-details">[+]</button>
+            <div class="expand-content" id="proj3-details">
+                <div class="project-image-wrapper">
+                    <img src="images/Eduservice.png" alt="Eduservice Project" class="project-image">
+                </div>
+                <p>Web application for service management with complex role-based access control (admin, teacher, student). Deployed via Google App Engine using Wasmer and automated CI/CD with GitHub Actions.</p>
+                <p><strong>Tech:</strong> PHP, MySQL, GCP, Wasmer, GitHub Actions</p>
+                <a href="https://github.com/ngominh123asd/Eduservice" target="_blank" class="brutal-link">[VIEW_SOURCE]</a>
+            </div>
+        </div>
+
+        <div class="draggable project-card" data-depth="-0.4" style="top: 75%; left: 65%;">
+            <h2 class="section-title">04_TERISLICENSE</h2>
+            <div class="tech-stack">BATCH // AUTOMATION</div>
+            <p>Internal license automation tool.</p>
+            <button class="expand-btn brutal-btn" data-target="proj4-details">[+]</button>
+            <div class="expand-content" id="proj4-details">
+                <p>A script-based utility tool to fully automate the license renewal process, packaged into the most lightweight executable possible.</p>
+                <p><strong>Tech:</strong> Batch Script, Windows Automation</p>
+                <a href="https://github.com/ngominh123asd/TerisLicense" target="_blank" class="brutal-link">[VIEW_SOURCE]</a>
+            </div>
+        </div>
+
+        <div class="draggable about-block" data-depth="-0.3" style="top: 20%; left: 60%;">
+            <h2 class="section-title">WHO_AM_I?</h2>
+            <p>Passionate about building high-performance backend systems and AI applications.</p>
+            <button class="expand-btn brutal-btn" data-target="about-details">[+]</button>
+            <div class="expand-content" id="about-details">
+                <p>Specialties: LangChain/RAG, Agentic Architecture. I avoid Bootstrap like the plague and believe every website needs a touch of wildness. Currently looking for projects that can keep me awake at night.</p>
+            </div>
+        </div>
+
+        <div class="draggable skills-card" data-depth="0.8" style="top: 55%; left: 5%;">
+            <h2 class="section-title" style="margin-bottom: 0.5rem;">SKILLS_</h2>
+            <button class="expand-btn brutal-btn" data-target="skills-details">[+]</button>
+            <div class="expand-content" id="skills-details" style="text-align: left; width: 100%;">
+
+                <div class="skill-category">
+                    <strong style="color: var(--accent-color); display: block; margin-bottom: 0.2rem;">Backend:</strong>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">SQLAlchemy</span>
+                        <span class="skill-tag">AsyncPG</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Alembic</span>
+                        <span class="skill-tag">Redis</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <strong style="color: var(--accent-color); display: block; margin-bottom: 0.2rem; margin-top: 0.5rem;">Frontend:</strong>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React 18/19</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Vite</span>
+                        <span class="skill-tag">Zustand</span>
+                        <span class="skill-tag">Tailwind</span>
+                        <span class="skill-tag">GSAP</span>
+                        <span class="skill-tag">Radix UI</span>
+                        <span class="skill-tag">Recharts</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <strong style="color: var(--accent-color); display: block; margin-bottom: 0.2rem; margin-top: 0.5rem;">AI/Data:</strong>
+                    <div class="skill-tags">
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">RAG</span>
+                        <span class="skill-tag">pgvector</span>
+                        <span class="skill-tag">Claude/Gemini API</span>
+                        <span class="skill-tag">MCP</span>
+                        <span class="skill-tag">Tavily</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <strong style="color: var(--accent-color); display: block; margin-bottom: 0.2rem; margin-top: 0.5rem;">DevOps/DB:</strong>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">WebSocket</span>
+                        <span class="skill-tag">GCP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="draggable contact-form" data-depth="0.1" style="bottom: 15%; right: 10%;">
+            <h2 class="section-title">PING_ME</h2>
+            <button id="ping-btn" class="brutal-btn" style="font-size: 1.2rem; cursor: none;">SEND TRANSMISSION</button>
+            <div style="margin-top: 15px;">
+                <a href="https://github.com/ngominh123asd" target="_blank" class="brutal-link" style="font-size: 14px;">[GITHUB]</a>
+            </div>
+        </div>
+    </main>
+
+    <div class="warning-banner">
+        <div class="marquee-content">
+            <span>WARNING: This portfolio violates 42 UX guidelines and I don't care // DRAG EVERYTHING // RESIZE THE WINDOW // CLICK [+] TO DIVE DEEPER // NOTHING IS CENTERED // &nbsp;</span>
+            <span>WARNING: This portfolio violates 42 UX guidelines and I don't care // DRAG EVERYTHING // RESIZE THE WINDOW // CLICK [+] TO DIVE DEEPER // NOTHING IS CENTERED // &nbsp;</span>
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <img id="lightbox-img" src="" alt="Zoomed Image">
+        <div class="lightbox-close">[X] CLOSE</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

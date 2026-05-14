@@ -1,0 +1,630 @@
+:root {
+    --bg-color: #e6e6e6; /* Start bright instead of dark */
+    --text-primary: #0f0f0f;
+    --accent-color: #ff003c; /* Cyberpunk red */
+    --accent-hover: #00f0ff; /* Cyan */
+    --font-display: 'Anton', sans-serif;
+    --font-body: 'Space Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; /* Hide default cursor */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow: hidden; /* Hide scrollbars, everything is dragged */
+    height: 100vh;
+    width: 100vw;
+    transition: filter 0.3s ease;
+}
+
+html.inverted {
+    filter: invert(1);
+    background: var(--bg-color); /* Need to keep background the same visually after invert */
+}
+
+/* Prevent images from being inverted when theme is inverted */
+html.inverted img {
+    filter: invert(1);
+}
+
+/* Custom Cursor */
+#custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999999; /* Always on top of everything */
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+body:active #custom-cursor {
+    width: 40px;
+    height: 40px;
+}
+
+#custom-cursor.hovering {
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border: 3px solid var(--text-primary);
+    border-radius: 0; /* Square for hover */
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* TV Static effect */
+#noise-layer {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200vh;
+    background: transparent url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    opacity: 0.15;
+    pointer-events: none;
+    animation: noise 0.2s infinite;
+    z-index: 2; /* Lowered to be behind draggables */
+}
+
+@keyframes noise {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -5%); }
+    20% { transform: translate(-10%, 5%); }
+    30% { transform: translate(5%, -10%); }
+    40% { transform: translate(-5%, 15%); }
+    50% { transform: translate(-10%, 5%); }
+    60% { transform: translate(15%, 0); }
+    70% { transform: translate(0, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Ripple effect styles */
+.ripple, .ripple-outer {
+    position: fixed;
+    background: var(--accent-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999990;
+}
+
+.ripple {
+    animation: ripple-out 0.6s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+.ripple-outer {
+    background: var(--accent-color);
+    animation: ripple-out-delayed 0.8s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+@keyframes ripple-out {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.4;
+    }
+    100% {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+    }
+}
+
+@keyframes ripple-out-delayed {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.2;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+@keyframes flash-anim {
+    0% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+/* Shake effect for containers */
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.draggable:active {
+    animation: shake 0.5s infinite;
+}
+
+/* Container for scattered layout */
+#chaos-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Draggable elements base */
+.draggable {
+    position: absolute;
+    background: var(--text-primary);
+    color: var(--bg-color);
+    padding: 2rem;
+    border: 4px solid var(--text-primary);
+    box-shadow: 10px 10px 0px var(--accent-color);
+    /* Faster transform when returning, added transition for left/top for smooth snapping */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.2s,
+                left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    user-select: none;
+    max-width: 400px;
+    z-index: 6; /* Base z-index for content, below warning banner (10) */
+    /* Use CSS variables for parallax to avoid transform conflicts */
+    --parallax-x: 0px;
+    --parallax-y: 0px;
+    --parallax-rot: 0deg;
+    --base-rot: 0deg;
+    transform: translate(var(--parallax-x), var(--parallax-y)) rotate(calc(var(--base-rot) + var(--parallax-rot)));
+}
+
+.draggable:active {
+    box-shadow: 2px 2px 0px var(--accent-color);
+    cursor: grabbing;
+}
+
+.draggable.is-dragging {
+    /* No transition while dragging for instant feedback */
+    transition: transform 0.1s linear, left 0s linear, top 0s linear !important;
+    z-index: 1000000 !important;
+    transform: translate(var(--parallax-x), var(--parallax-y)) scale(1.05) rotate(var(--drag-rot, 2deg)) !important;
+    cursor: grabbing;
+}
+
+.draggable.is-dragging * {
+    pointer-events: none; /* Disable interaction with children while dragging Ping Me */
+}
+
+.draggable:hover {
+    z-index: 100;
+}
+
+h1, .section-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: -2px;
+}
+
+/* Glitch effect for main title */
+.glitch {
+    position: relative;
+    font-size: 6rem;
+    color: var(--bg-color);
+}
+
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 4px;
+    text-shadow: -2px 0 var(--accent-color);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -4px;
+    text-shadow: -2px 0 #00f0ff;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(78px, 9999px, 83px, 0); }
+    20% { clip: rect(31px, 9999px, 96px, 0); }
+    40% { clip: rect(85px, 9999px, 14px, 0); }
+    60% { clip: rect(48px, 9999px, 9px, 0); }
+    80% { clip: rect(6px, 9999px, 2px, 0); }
+    100% { clip: rect(81px, 9999px, 26px, 0); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(98px, 9999px, 20px, 0); }
+    20% { clip: rect(33px, 9999px, 53px, 0); }
+    40% { clip: rect(4px, 9999px, 88px, 0); }
+    60% { clip: rect(60px, 9999px, 80px, 0); }
+    80% { clip: rect(10px, 9999px, 14px, 0); }
+    100% { clip: rect(21px, 9999px, 73px, 0); }
+}
+
+/* Specific Block Styling */
+.header-block {
+    background: #0f0f0f;
+    border: 4px solid var(--text-primary);
+    box-shadow: 10px 10px 0px var(--accent-color);
+    color: var(--bg-color);
+}
+
+.header-block .expand-btn {
+    background: transparent;
+    border-color: var(--bg-color);
+    color: var(--bg-color);
+}
+
+.header-block .expand-btn:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--text-primary);
+}
+
+.project-card {
+    background: var(--bg-color);
+    color: var(--text-primary);
+}
+
+.project-card .section-title {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+}
+
+.tech-stack {
+    font-size: 0.8rem;
+    border-top: 2px dashed var(--text-primary);
+    border-bottom: 2px dashed var(--text-primary);
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.brutal-link, .brutal-btn {
+    display: inline-block;
+    color: var(--bg-color);
+    background: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+
+.project-card .brutal-link {
+    color: var(--text-primary);
+    background: transparent;
+    border: 2px solid var(--text-primary);
+}
+
+.brutal-link:hover, .brutal-btn:hover {
+    background: var(--accent-color);
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+    transform: skew(-10deg) scale(1.1);
+}
+
+.skills-card {
+    background: var(--text-primary);
+    color: var(--bg-color);
+    width: 350px;
+}
+
+.skills-card .section-title {
+    color: var(--bg-color);
+}
+
+.skills-card .expand-content.expanded {
+    border-top: 2px dashed var(--bg-color);
+}
+
+.skills-card .expand-btn {
+    border-color: var(--bg-color);
+    color: var(--bg-color);
+}
+
+.skills-card .expand-btn:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.skill-tag {
+    background: transparent;
+    border: 1px solid var(--bg-color);
+    color: var(--bg-color);
+    font-size: 0.75rem;
+    padding: 0.1rem 0.4rem;
+    font-family: var(--font-body);
+}
+
+ul {
+    list-style-type: square;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Marquee Banner */
+.warning-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+    padding: 10px 0;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 10; /* Nằm dưới các thành phần được select (bắt đầu từ 1000) */
+    border-top: 4px solid var(--text-primary);
+    display: flex;
+    pointer-events: none; /* Allow picking up elements behind or dragging over it */
+}
+
+/* Ensure selected text is visible above everything */
+::selection {
+    background: var(--accent-color);
+    color: var(--text-primary);
+}
+::-moz-selection {
+    background: var(--accent-color);
+    color: var(--text-primary);
+}
+
+.marquee-content {
+    display: flex;
+    animation: marquee-scroll 20s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Add a class for elements that should trigger invertion on hover */
+.invert-trigger:hover {
+    cursor: none;
+}
+/* Expandable Content */
+.expand-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out, margin-top 0.3s;
+}
+
+.expand-content.expanded {
+    max-height: 350px;
+    overflow-y: auto;
+    opacity: 1;
+    margin-top: 1rem;
+    border-top: 2px dashed var(--accent-color);
+    padding-top: 1rem;
+    
+    /* Push scrollbar to the very right edge of the card */
+    margin-right: -1.5rem; 
+    padding-right: 1.5rem;
+}
+
+.skills-card .expand-content.expanded {
+    border-top: none;
+    padding-top: 0;
+}
+
+/* Brutalist Image Wrapper */
+.project-image-wrapper {
+    width: 100%;
+    border: 3px solid var(--text-primary);
+    box-shadow: 5px 5px 0px var(--accent-color);
+    margin-bottom: 1rem;
+    background: var(--text-primary);
+    transition: transform 0.2s, box-shadow 0.2s;
+    line-height: 0;
+}
+
+.project-image-wrapper:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px var(--accent-color);
+}
+
+.project-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Custom Brutalist Scrollbar */
+.expand-content::-webkit-scrollbar {
+    width: 14px;
+}
+.expand-content::-webkit-scrollbar-track {
+    background: var(--bg-color); /* Solid background prevents jagged alpha blending */
+    border-left: 1px solid var(--text-primary); /* Subtle border to separate from content */
+}
+.expand-content::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+}
+.expand-content::-webkit-scrollbar-thumb:hover {
+    background: var(--text-primary);
+}
+.expand-content {
+    scrollbar-width: auto;
+    scrollbar-color: var(--accent-color) var(--bg-color);
+    outline: 1px solid transparent; /* Force hardware anti-aliasing */
+    transform: translateZ(0); /* Hardware acceleration to smooth edges */
+}
+
+.expand-btn {
+    font-size: 1.2rem;
+    padding: 0.4rem 1rem;
+    margin-top: 0.5rem;
+    background: transparent;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    cursor: none;
+    min-width: 65px;
+    text-align: center;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.skills-card .expand-btn {
+    border-color: var(--bg-color);
+    color: var(--bg-color);
+}
+
+.skills-card .expand-btn:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Adjust draggable active width if needed when expanded */
+.draggable.expanded-container {
+    transform: translate(var(--parallax-x), var(--parallax-y)) rotate(0deg) !important;
+    z-index: 10000 !important;
+    /* Expanding straightens the card for comfortable reading and fixes browser scrollbar aliasing */
+}
+
+/* Specific styling for WHO_AM_I and PING_ME expand buttons to contrast correctly */
+.about-block {
+    background: var(--text-primary);
+    color: var(--bg-color);
+}
+.about-block .section-title {
+    color: var(--bg-color);
+}
+.about-block .expand-btn {
+    border-color: var(--bg-color);
+    color: var(--bg-color);
+}
+.about-block .expand-btn:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.contact-form {
+    background: var(--text-primary);
+    color: var(--bg-color);
+}
+.contact-form .section-title {
+    color: var(--bg-color);
+}
+.contact-form .brutal-btn {
+    background: var(--bg-color);
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+.contact-form .brutal-btn:hover {
+    background: var(--accent-color);
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+.contact-form .brutal-link {
+    color: var(--bg-color);
+    border-color: var(--bg-color);
+}
+.contact-form .brutal-link:hover {
+    background: var(--accent-color);
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 15, 15, 0.9);
+    z-index: 99999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.lightbox.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border: 4px solid var(--accent-color);
+    box-shadow: 15px 15px 0px var(--text-primary);
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lightbox.active img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--accent-color);
+    font-family: var(--font-display);
+    font-size: 2rem;
+    cursor: none;
+    transition: transform 0.2s, color 0.2s;
+}
+.lightbox-close:hover {
+    color: var(--bg-color);
+    transform: scale(1.2);
+}
