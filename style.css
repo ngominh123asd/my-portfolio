@@ -629,6 +629,10 @@ li {
     transform: scale(1.2);
 }
 
+.mobile-text {
+    display: none;
+}
+
 /* ========================================= */
 /* MOBILE OPTIMIZATIONS (Smart Fallback)     */
 /* ========================================= */
@@ -653,7 +657,7 @@ li {
         flex-direction: column;
         align-items: center;
         padding: 1.5rem;
-        padding-bottom: 6rem; /* Make room for the warning banner */
+        padding-bottom: 2rem; /* Reduced padding since banner will flow normally */
         gap: 2rem;
         height: auto;
         width: 100%;
@@ -683,9 +687,22 @@ li {
         font-size: 1.1rem;
     }
 
+    .desktop-text {
+        display: none;
+    }
+
+    .mobile-text {
+        display: flex;
+    }
+
     .warning-banner {
-        font-size: 1rem;
-        padding: 10px 0;
+        position: sticky !important; /* Better than fixed on mobile */
+        bottom: 0 !important;
+        font-size: 1.2rem !important;
+        padding: 15px 0 !important;
+        line-height: 1.2 !important; /* Fix text being cut off */
+        height: auto !important;
+        z-index: 100 !important;
     }
 
     .lightbox img {
