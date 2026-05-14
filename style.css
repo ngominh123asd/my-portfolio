@@ -403,7 +403,8 @@ li {
     font-family: var(--font-display);
     font-size: 2rem;
     white-space: nowrap;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
     z-index: 10; /* Nằm dưới các thành phần được select (bắt đầu từ 1000) */
     border-top: 4px solid var(--text-primary);
     display: flex;

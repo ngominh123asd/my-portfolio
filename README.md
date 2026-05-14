@@ -1,7 +1,5 @@
 # THE ANTI-PORTFOLIO 💥
 
-![Disruptive Portfolio](images/Masuzu.png)
-
 A chaotic, brutalist, and highly interactive portfolio built for a Full-Stack AI Engineer. This project deliberately breaks conventional UX rules to create a memorable, experimental, and uniquely engaging web experience.
 
 ## Core Concept
