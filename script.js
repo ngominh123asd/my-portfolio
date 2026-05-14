@@ -274,6 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pingBtn.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
         pingBtn.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
 
+        let pingTimeout;
         pingBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation(); // prevent dragging
@@ -281,23 +282,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = "ngominh234123@gmail.com";
             
             navigator.clipboard.writeText(email).then(() => {
-                const originalText = pingBtn.textContent;
+                clearTimeout(pingTimeout);
                 pingBtn.textContent = "[EMAIL_COPIED_TO_CLIPBOARD_]";
                 pingBtn.style.backgroundColor = "var(--accent-color)";
                 pingBtn.style.color = "var(--bg-color)";
                 pingBtn.style.transform = "scale(1.05) skewX(-10deg)";
                 pingBtn.style.border = "4px solid var(--text-primary)";
                 
-                setTimeout(() => {
-                    pingBtn.textContent = originalText;
+                pingTimeout = setTimeout(() => {
+                    pingBtn.textContent = "SEND TRANSMISSION";
                     pingBtn.style.backgroundColor = "";
                     pingBtn.style.color = "";
                     pingBtn.style.transform = "";
                     pingBtn.style.border = "";
                 }, 2000);
             }).catch(err => {
+                clearTimeout(pingTimeout);
                 pingBtn.textContent = "[ERROR_TRANSMISSION_FAILED_]";
-                setTimeout(() => {
+                pingTimeout = setTimeout(() => {
                     pingBtn.textContent = "SEND TRANSMISSION";
                 }, 2000);
             });
