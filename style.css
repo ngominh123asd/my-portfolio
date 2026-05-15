@@ -1,8 +1,11 @@
 :root {
-    --bg-color: #e6e6e6; /* Start bright instead of dark */
+    --bg-color: #e6e6e6;
+    /* Start bright instead of dark */
     --text-primary: #0f0f0f;
-    --accent-color: #ff003c; /* Cyberpunk red */
-    --accent-hover: #00f0ff; /* Cyan */
+    --accent-color: #ff003c;
+    /* Cyberpunk red */
+    --accent-hover: #00f0ff;
+    /* Cyan */
     --font-display: 'Anton', sans-serif;
     --font-body: 'Space Mono', monospace;
 }
@@ -11,14 +14,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none !important; /* Force hide default cursor everywhere */
+    cursor: none !important;
+    /* Force hide default cursor everywhere */
 }
 
-html, body {
+html,
+body {
     cursor: none !important;
 }
 
-a, button, input, select, textarea, [role="button"] {
+a,
+button,
+input,
+select,
+textarea,
+[role="button"] {
     cursor: none !important;
 }
 
@@ -26,7 +36,8 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     font-family: var(--font-body);
-    overflow: hidden; /* Hide scrollbars, everything is dragged */
+    overflow: hidden;
+    /* Hide scrollbars, everything is dragged */
     height: 100vh;
     width: 100vw;
     transition: filter 0.3s ease;
@@ -34,7 +45,8 @@ body {
 
 html.inverted {
     filter: invert(1);
-    background: var(--bg-color); /* Need to keep background the same visually after invert */
+    background: var(--bg-color);
+    /* Need to keep background the same visually after invert */
 }
 
 /* Prevent images from being inverted when theme is inverted */
@@ -49,14 +61,17 @@ html.inverted img {
     left: 0;
     width: 20px;
     height: 20px;
-    background-color: #ffffff; /* White for perfect inversion */
+    background-color: #ffffff;
+    /* White for perfect inversion */
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999999; /* Always on top of everything */
+    z-index: 9999999;
+    /* Always on top of everything */
     mix-blend-mode: difference;
     transform: translate(-50%, -50%);
     transition: width 0.2s, height 0.2s, background-color 0.2s;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Subtle edge */
 }
 
 body:active #custom-cursor {
@@ -68,14 +83,21 @@ body:active #custom-cursor {
     width: 60px;
     height: 60px;
     background-color: transparent;
-    border: 3px solid #ffffff; /* White border for perfect inversion */
-    border-radius: 0; /* Square for hover */
+    border: 3px solid #ffffff;
+    /* White border for perfect inversion */
+    border-radius: 0;
+    /* Square for hover */
     animation: rotate 2s linear infinite;
 }
 
 @keyframes rotate {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 /* TV Static effect */
@@ -91,25 +113,59 @@ body:active #custom-cursor {
     opacity: 0.15;
     pointer-events: none;
     animation: noise 0.2s infinite;
-    z-index: 2; /* Lowered to be behind draggables */
+    z-index: 2;
+    /* Lowered to be behind draggables */
 }
 
 @keyframes noise {
-    0% { transform: translate(0, 0); }
-    10% { transform: translate(-5%, -5%); }
-    20% { transform: translate(-10%, 5%); }
-    30% { transform: translate(5%, -10%); }
-    40% { transform: translate(-5%, 15%); }
-    50% { transform: translate(-10%, 5%); }
-    60% { transform: translate(15%, 0); }
-    70% { transform: translate(0, 15%); }
-    80% { transform: translate(3%, 35%); }
-    90% { transform: translate(-10%, 10%); }
-    100% { transform: translate(0, 0); }
+    0% {
+        transform: translate(0, 0);
+    }
+
+    10% {
+        transform: translate(-5%, -5%);
+    }
+
+    20% {
+        transform: translate(-10%, 5%);
+    }
+
+    30% {
+        transform: translate(5%, -10%);
+    }
+
+    40% {
+        transform: translate(-5%, 15%);
+    }
+
+    50% {
+        transform: translate(-10%, 5%);
+    }
+
+    60% {
+        transform: translate(15%, 0);
+    }
+
+    70% {
+        transform: translate(0, 15%);
+    }
+
+    80% {
+        transform: translate(3%, 35%);
+    }
+
+    90% {
+        transform: translate(-10%, 10%);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
 }
 
 /* Ripple effect styles */
-.ripple, .ripple-outer {
+.ripple,
+.ripple-outer {
     position: fixed;
     background: var(--accent-color);
     border-radius: 50%;
@@ -133,6 +189,7 @@ body:active #custom-cursor {
         height: 0;
         opacity: 0.4;
     }
+
     100% {
         width: 200px;
         height: 200px;
@@ -146,6 +203,7 @@ body:active #custom-cursor {
         height: 0;
         opacity: 0.2;
     }
+
     100% {
         width: 300px;
         height: 300px;
@@ -154,23 +212,60 @@ body:active #custom-cursor {
 }
 
 @keyframes flash-anim {
-    0% { opacity: 0.8; }
-    100% { opacity: 0; }
+    0% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 /* Shake effect for containers */
 @keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
 }
 
 .draggable:active {
@@ -194,12 +289,13 @@ body:active #custom-cursor {
     box-shadow: 10px 10px 0px var(--accent-color);
     /* Faster transform when returning, added transition for left/top for smooth snapping */
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                box-shadow 0.2s,
-                left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow 0.2s,
+        left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     user-select: none;
     max-width: 400px;
-    z-index: 6; /* Base z-index for content, below warning banner (10) */
+    z-index: 6;
+    /* Base z-index for content, below warning banner (10) */
     /* Use CSS variables for parallax to avoid transform conflicts */
     --parallax-x: 0px;
     --parallax-y: 0px;
@@ -220,14 +316,16 @@ body:active #custom-cursor {
 }
 
 .draggable.is-dragging * {
-    pointer-events: none; /* Disable interaction with children while dragging Ping Me */
+    pointer-events: none;
+    /* Disable interaction with children while dragging Ping Me */
 }
 
 .draggable:hover {
     z-index: 100;
 }
 
-h1, .section-title {
+h1,
+.section-title {
     font-family: var(--font-display);
     text-transform: uppercase;
     font-size: 3rem;
@@ -243,7 +341,8 @@ h1, .section-title {
     color: var(--bg-color);
 }
 
-.glitch::before, .glitch::after {
+.glitch::before,
+.glitch::after {
     content: attr(data-text);
     position: absolute;
     top: 0;
@@ -267,21 +366,55 @@ h1, .section-title {
 }
 
 @keyframes glitch-anim {
-    0% { clip: rect(78px, 9999px, 83px, 0); }
-    20% { clip: rect(31px, 9999px, 96px, 0); }
-    40% { clip: rect(85px, 9999px, 14px, 0); }
-    60% { clip: rect(48px, 9999px, 9px, 0); }
-    80% { clip: rect(6px, 9999px, 2px, 0); }
-    100% { clip: rect(81px, 9999px, 26px, 0); }
+    0% {
+        clip: rect(78px, 9999px, 83px, 0);
+    }
+
+    20% {
+        clip: rect(31px, 9999px, 96px, 0);
+    }
+
+    40% {
+        clip: rect(85px, 9999px, 14px, 0);
+    }
+
+    60% {
+        clip: rect(48px, 9999px, 9px, 0);
+    }
+
+    80% {
+        clip: rect(6px, 9999px, 2px, 0);
+    }
+
+    100% {
+        clip: rect(81px, 9999px, 26px, 0);
+    }
 }
 
 @keyframes glitch-anim2 {
-    0% { clip: rect(98px, 9999px, 20px, 0); }
-    20% { clip: rect(33px, 9999px, 53px, 0); }
-    40% { clip: rect(4px, 9999px, 88px, 0); }
-    60% { clip: rect(60px, 9999px, 80px, 0); }
-    80% { clip: rect(10px, 9999px, 14px, 0); }
-    100% { clip: rect(21px, 9999px, 73px, 0); }
+    0% {
+        clip: rect(98px, 9999px, 20px, 0);
+    }
+
+    20% {
+        clip: rect(33px, 9999px, 53px, 0);
+    }
+
+    40% {
+        clip: rect(4px, 9999px, 88px, 0);
+    }
+
+    60% {
+        clip: rect(60px, 9999px, 80px, 0);
+    }
+
+    80% {
+        clip: rect(10px, 9999px, 14px, 0);
+    }
+
+    100% {
+        clip: rect(21px, 9999px, 73px, 0);
+    }
 }
 
 /* Specific Block Styling */
@@ -323,7 +456,8 @@ h1, .section-title {
     font-weight: bold;
 }
 
-.brutal-link, .brutal-btn {
+.brutal-link,
+.brutal-btn {
     display: inline-block;
     color: var(--bg-color);
     background: var(--text-primary);
@@ -342,7 +476,8 @@ h1, .section-title {
     border: 2px solid var(--text-primary);
 }
 
-.brutal-link:hover, .brutal-btn:hover {
+.brutal-link:hover,
+.brutal-btn:hover {
     background: var(--accent-color);
     color: var(--text-primary);
     border-color: var(--text-primary);
@@ -412,10 +547,12 @@ li {
     white-space: nowrap;
     overflow-x: hidden;
     overflow-y: visible;
-    z-index: 10; /* Nằm dưới các thành phần được select (bắt đầu từ 1000) */
+    z-index: 10;
+    /* Nằm dưới các thành phần được select (bắt đầu từ 1000) */
     border-top: 4px solid var(--text-primary);
     display: flex;
-    pointer-events: none; /* Allow picking up elements behind or dragging over it */
+    pointer-events: none;
+    /* Allow picking up elements behind or dragging over it */
 }
 
 /* Ensure selected text is visible above everything */
@@ -423,6 +560,7 @@ li {
     background: var(--accent-color);
     color: var(--text-primary);
 }
+
 ::-moz-selection {
     background: var(--accent-color);
     color: var(--text-primary);
@@ -435,13 +573,16 @@ li {
 }
 
 @keyframes marquee-scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
-/* Add a class for elements that should trigger invertion on hover */
-.invert-trigger:hover {
-}
+
 /* Expandable Content */
 .expand-content {
     max-height: 0;
@@ -457,9 +598,9 @@ li {
     margin-top: 1rem;
     border-top: 2px dashed var(--accent-color);
     padding-top: 1rem;
-    
+
     /* Push scrollbar to the very right edge of the card */
-    margin-right: -1.5rem; 
+    margin-right: -1.5rem;
     padding-right: 1.5rem;
 }
 
@@ -494,21 +635,29 @@ li {
 .expand-content::-webkit-scrollbar {
     width: 14px;
 }
+
 .expand-content::-webkit-scrollbar-track {
-    background: var(--bg-color); /* Solid background prevents jagged alpha blending */
-    border-left: 1px solid var(--text-primary); /* Subtle border to separate from content */
+    background: var(--bg-color);
+    /* Solid background prevents jagged alpha blending */
+    border-left: 1px solid var(--text-primary);
+    /* Subtle border to separate from content */
 }
+
 .expand-content::-webkit-scrollbar-thumb {
     background: var(--accent-color);
 }
+
 .expand-content::-webkit-scrollbar-thumb:hover {
     background: var(--text-primary);
 }
+
 .expand-content {
     scrollbar-width: auto;
     scrollbar-color: var(--accent-color) var(--bg-color);
-    outline: 1px solid transparent; /* Force hardware anti-aliasing */
-    transform: translateZ(0); /* Hardware acceleration to smooth edges */
+    outline: 1px solid transparent;
+    /* Force hardware anti-aliasing */
+    transform: translateZ(0);
+    /* Hardware acceleration to smooth edges */
 }
 
 .expand-btn {
@@ -545,13 +694,16 @@ li {
     background: var(--text-primary);
     color: var(--bg-color);
 }
+
 .about-block .section-title {
     color: var(--bg-color);
 }
+
 .about-block .expand-btn {
     border-color: var(--bg-color);
     color: var(--bg-color);
 }
+
 .about-block .expand-btn:hover {
     background: var(--accent-color);
     border-color: var(--accent-color);
@@ -561,23 +713,28 @@ li {
     background: var(--text-primary);
     color: var(--bg-color);
 }
+
 .contact-form .section-title {
     color: var(--bg-color);
 }
+
 .contact-form .brutal-btn {
     background: var(--bg-color);
     color: var(--text-primary);
     border-color: var(--text-primary);
 }
+
 .contact-form .brutal-btn:hover {
     background: var(--accent-color);
     color: var(--text-primary);
     border-color: var(--text-primary);
 }
+
 .contact-form .brutal-link {
     color: var(--bg-color);
     border-color: var(--bg-color);
 }
+
 .contact-form .brutal-link:hover {
     background: var(--accent-color);
     color: var(--text-primary);
@@ -629,6 +786,7 @@ li {
     font-size: 2rem;
     transition: transform 0.2s, color 0.2s;
 }
+
 .lightbox-close:hover {
     color: var(--bg-color);
     transform: scale(1.2);
@@ -643,18 +801,21 @@ li {
 /* ========================================= */
 @media (max-width: 768px) {
     body {
-        overflow-y: auto !important; /* Enable vertical scrolling */
+        overflow-y: auto !important;
+        /* Enable vertical scrolling */
         overflow-x: hidden !important;
         height: auto !important;
         min-height: 100vh;
     }
-    
+
     #custom-cursor {
-        display: none !important; /* Touch devices don't need custom cursor */
+        display: none !important;
+        /* Touch devices don't need custom cursor */
     }
 
     * {
-        cursor: auto !important; /* Restore normal touch interactions */
+        cursor: auto !important;
+        /* Restore normal touch interactions */
     }
 
     #chaos-container {
@@ -662,7 +823,8 @@ li {
         flex-direction: column;
         align-items: center;
         padding: 1.5rem;
-        padding-bottom: 2rem; /* Reduced padding since banner will flow normally */
+        padding-bottom: 2rem;
+        /* Reduced padding since banner will flow normally */
         gap: 2rem;
         height: auto;
         width: 100%;
@@ -677,17 +839,20 @@ li {
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
-        transform: rotate(var(--drag-rot, 2deg)) !important; /* Keep the chaotic rotation but disable translation/parallax */
+        transform: rotate(var(--drag-rot, 2deg)) !important;
+        /* Keep the chaotic rotation but disable translation/parallax */
     }
 
     .draggable.expanded-container {
-        transform: rotate(0deg) !important; /* Straighten when reading */
+        transform: rotate(0deg) !important;
+        /* Straighten when reading */
     }
 
     .glitch {
-        font-size: 3.5rem; /* Scale down massive text */
+        font-size: 3.5rem;
+        /* Scale down massive text */
     }
-    
+
     .subtitle {
         font-size: 1.1rem;
     }
@@ -701,16 +866,19 @@ li {
     }
 
     .warning-banner {
-        position: sticky !important; /* Better than fixed on mobile */
+        position: sticky !important;
+        /* Better than fixed on mobile */
         bottom: 0 !important;
         font-size: 1.2rem !important;
         padding: 15px 0 !important;
-        line-height: 1.2 !important; /* Fix text being cut off */
+        line-height: 1.2 !important;
+        /* Fix text being cut off */
         height: auto !important;
         z-index: 100 !important;
     }
 
     .lightbox img {
-        box-shadow: 5px 5px 0px var(--text-primary); /* Smaller shadow on mobile */
+        box-shadow: 5px 5px 0px var(--text-primary);
+        /* Smaller shadow on mobile */
     }
 }
