@@ -41,13 +41,14 @@ html.inverted img {
     left: 0;
     width: 20px;
     height: 20px;
-    background-color: var(--accent-color);
+    background-color: #ffffff; /* White for perfect inversion */
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999999; /* Always on top of everything */
     mix-blend-mode: difference;
     transform: translate(-50%, -50%);
     transition: width 0.2s, height 0.2s, background-color 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge */
 }
 
 body:active #custom-cursor {
@@ -59,7 +60,7 @@ body:active #custom-cursor {
     width: 60px;
     height: 60px;
     background-color: transparent;
-    border: 3px solid var(--text-primary);
+    border: 3px solid #ffffff; /* White border for perfect inversion */
     border-radius: 0; /* Square for hover */
     animation: rotate 2s linear infinite;
 }
