@@ -16,7 +16,7 @@
     <main id="chaos-container">
         <!-- Floating scattered elements instead of structured layout -->
 
-        <header class="draggable header-block" data-depth="0.2" style="top: 5%; left: 5%;">
+        <header class="draggable header-block" data-depth="0.2" style="top: 4%; left: 2%;">
             <h1 class="glitch" data-text="MINH.">MINH.</h1>
             <p class="subtitle">Full-Stack AI Engineer. I build agents and break things.</p>
             <button class="expand-btn brutal-btn" data-target="header-details">[+]</button>
@@ -29,7 +29,7 @@
             </div>
         </header>
 
-        <div class="draggable project-card" data-depth="0.5" style="top: 30%; left: 20%;">
+        <div class="draggable project-card" data-depth="0.5" style="top: 20%; left: 15%;">
             <h2 class="section-title">01_NEXTSTEM_VN</h2>
             <div class="tech-stack">PYTHON // REACT // LANGCHAIN</div>
             <p>AI-powered platform assisting students with STEM study abroad orientation.</p>
@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="draggable project-card" data-depth="-0.2" style="top: 60%; left: 35%;">
+        <div class="draggable project-card" data-depth="-0.2" style="top: 52%; left: 21%;">
             <h2 class="section-title">02_MASUZU_AI</h2>
             <div class="tech-stack">FASTAPI // WEBSOCKET // MCP</div>
             <p>AI Agent platform operating as a complete internal IDE.</p>
@@ -59,7 +59,7 @@
             </div>
         </div>
 
-        <div class="draggable project-card" data-depth="0.3" style="top: 10%; left: 45%;">
+        <div class="draggable project-card" data-depth="0.3" style="top: 5%; left: 40%;">
             <h2 class="section-title">03_EDUSERVICE</h2>
             <div class="tech-stack">PHP // MYSQL // GCP</div>
             <p>Multi-role educational management system.</p>
@@ -74,7 +74,7 @@
             </div>
         </div>
 
-        <div class="draggable project-card" data-depth="-0.4" style="top: 75%; left: 65%;">
+        <div class="draggable project-card" data-depth="-0.4" style="top: 52%; left: 66%;">
             <h2 class="section-title">04_TERISLICENSE</h2>
             <div class="tech-stack">BATCH // AUTOMATION</div>
             <p>Internal license automation tool.</p>
@@ -86,7 +86,22 @@
             </div>
         </div>
 
-        <div class="draggable about-block" data-depth="-0.3" style="top: 20%; left: 60%;">
+        <div class="draggable project-card" data-depth="0.35" style="top: 38%; left: 43%;">
+            <h2 class="section-title">05_FULLCFILE</h2>
+            <div class="tech-stack">FASTAPI // PADDLEOCR // CELERY</div>
+            <p>High-precision multimodal document conversion & deep Vietnamese AI OCR platform.</p>
+            <button class="expand-btn brutal-btn" data-target="proj5-details">[+]</button>
+            <div class="expand-content" id="proj5-details">
+                <div class="project-image-wrapper">
+                    <img src="images/FullCFile.png" alt="FullCFile Project" class="project-image">
+                </div>
+                <p>Next-gen document processing and OCR engine tailored for Vietnamese and English. Integrates PaddleOCR PP-Structure and SLANet for 1:1 table reconstruction, Celery + Redis for non-blocking task queue, and Pandoc AST for academic-grade conversion across DOCX, PDF, XLSX, and Markdown.</p>
+                <p><strong>Tech:</strong> FastAPI, Celery, Redis, PaddleOCR, SLANet, MinIO, React 18, Docker</p>
+                <a href="https://github.com/ngominh123asd/FullCFile" target="_blank" class="brutal-link">[VIEW_SOURCE]</a>
+            </div>
+        </div>
+
+        <div class="draggable about-block" data-depth="-0.25" style="top: 5%; left: 66%;">
             <h2 class="section-title">WHO_AM_I?</h2>
             <p>Passionate about building high-performance backend systems and AI applications.</p>
             <button class="expand-btn brutal-btn" data-target="about-details">[+]</button>
@@ -95,7 +110,7 @@
             </div>
         </div>
 
-        <div class="draggable skills-card" data-depth="0.8" style="top: 55%; left: 5%;">
+        <div class="draggable skills-card" data-depth="0.4" style="top: 52%; left: 2%;">
             <h2 class="section-title" style="margin-bottom: 0.5rem;">SKILLS_</h2>
             <button class="expand-btn brutal-btn" data-target="skills-details">[+]</button>
             <div class="expand-content" id="skills-details" style="text-align: left; width: 100%;">
@@ -105,6 +120,7 @@
                     <div class="skill-tags">
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Celery</span>
                         <span class="skill-tag">SQLAlchemy</span>
                         <span class="skill-tag">AsyncPG</span>
                         <span class="skill-tag">PHP</span>
@@ -130,6 +146,8 @@
                 <div class="skill-category">
                     <strong style="color: var(--accent-color); display: block; margin-bottom: 0.2rem; margin-top: 0.5rem;">AI/Data:</strong>
                     <div class="skill-tags">
+                        <span class="skill-tag">PaddleOCR</span>
+                        <span class="skill-tag">SLANet / OCR</span>
                         <span class="skill-tag">LangChain</span>
                         <span class="skill-tag">RAG</span>
                         <span class="skill-tag">pgvector</span>
@@ -144,6 +162,7 @@
                     <div class="skill-tags">
                         <span class="skill-tag">Docker</span>
                         <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MinIO (S3)</span>
                         <span class="skill-tag">GitHub Actions</span>
                         <span class="skill-tag">WebSocket</span>
                         <span class="skill-tag">GCP</span>
@@ -152,7 +171,7 @@
             </div>
         </div>
 
-        <div class="draggable contact-form" data-depth="0.1" style="bottom: 15%; right: 10%;">
+        <div class="draggable contact-form" data-depth="0.15" style="top: 26%; left: 83%;">
             <h2 class="section-title">PING_ME</h2>
             <button id="ping-btn" class="brutal-btn" style="font-size: 1.2rem; cursor: none;">SEND TRANSMISSION</button>
             <div style="margin-top: 15px;">
